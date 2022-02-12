@@ -10,6 +10,7 @@
   "dependencies": {
     "@hcaptcha/react-hcaptcha": "^1.1.0",
     "@walletconnect/web3-provider": "^1.7.1",
+    "axios": "^0.25.0",
     "moment": "^2.29.1",
     "next": "latest",
     "react": "^17.0.2",
