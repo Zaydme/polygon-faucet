@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import { ToastContainer } from 'react-toastify'
 import ThemeSwitch from '../components/ThemeSwitch'
 import Head from 'next/head'
+import GithubCorner from '../components/GithubCorner'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -42,6 +43,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta property="twitter:image" content="/banner.png" />
       </Head>
+      <GithubCorner repository={'https://github.com/zaydme/polygon-faucet'} />
       <ThemeSwitch />
       <ToastContainer hideProgressBar={true} />
       <main
