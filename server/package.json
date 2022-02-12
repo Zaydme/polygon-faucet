@@ -1,0 +1,47 @@
+{
+  "name": "faucet-api",
+  "version": "0.0.1",
+  "description": "Polygon matic faucet API",
+  "author": "Zaydme",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "engines": {
+    "node": "12.x"
+  },
+  "dependencies": {
+    "@types/node": "^12.7.5",
+    "axios": "^0.24.0",
+    "dotenv": "^8.1.0",
+    "fastify": "^2.0.0",
+    "fastify-autoload": "^1.0.0",
+    "fastify-cli": "^1.2.0",
+    "fastify-cors": "^3.0.3",
+    "fastify-mongodb": "^1.0.1",
+    "fastify-plugin": "^1.5.0",
+    "fastify-rate-limit": "^5.7.0",
+    "fastify-redis": "^4.3.3",
+    "lodash": "^4.17.21",
+    "pg": "^7.12.1",
+    "pino-pretty": "^7.3.0",
+    "redis": "^4.0.1",
+    "ts-node": "^8.4.1",
+    "ts-node-dev": "^1.0.0-pre.43",
+    "typescript": "^3.6.3",
+    "web3": "^1.7.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.3.0",
+    "@typescript-eslint/parser": "^2.3.0",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts | pino-pretty",
+    "eslint:fix": "eslint -c ./.eslintrc.json --fix ./src/**/*.ts",
+    "start": "ts-node src/index.ts | pino-pretty",
+    "ts:build": "tsc",
+    "ts:watch": "tsc -w"
+  }
+}
