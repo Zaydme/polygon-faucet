@@ -15,7 +15,7 @@ export default async function(fastify, opts) {
       .toArray();
 
     return {
-      faucetBalance,
+      faucetBalance: fastify.web3.utils.fromWei(faucetBalance, 'ether'),
       claimTimeout: opts.config.timeouts.claimTimeout,
       latest10Transactions,
     };
