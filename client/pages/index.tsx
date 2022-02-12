@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify'
-import ThemeSwitch from '../components/ThemeSwitch'
+import { toast } from 'react-toastify'
 import PolygonLogo from '../assets/PolygonLogo'
 import AccountManager from '../controller/accountManager'
 import claimFaucet from '../controller/faucet'
@@ -55,8 +54,7 @@ export default function Home() {
 
   const connectWallet = () => {
     if (account) {
-      if (captchaRef?.current && !captcha)
-        return captchaRef.current.execute()
+      if (captchaRef?.current && !captcha) return captchaRef.current.execute()
     }
     accountManager
       .connect()
@@ -82,15 +80,11 @@ export default function Home() {
   }, [])
 
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-center bg-white py-2 dark:bg-slate-900 dark:text-white`}
-    >
+    <>
       <Head>
-        <title>Polygon Faucet</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Polygon Matic Community Faucet</title>
+        <meta name="title" content="Polygon Matic Community Faucet" />
       </Head>
-      <ThemeSwitch />
-      <ToastContainer hideProgressBar={true} />
       <div className="relative w-11/12 overflow-hidden whitespace-nowrap rounded-3xl border-2 border-slate-800 shadow-2xl shadow-slate-700 dark:shadow-black/50 md:w-96">
         <h1 className="flex flex-col items-center justify-center px-6 py-2 text-center text-sm font-light">
           <PolygonLogo className="h-14" />
@@ -148,7 +142,7 @@ export default function Home() {
               <PolygonScan short tx={tx.hash} />
             </li>
           ))}
-          {recentTxs === null &&  (
+          {recentTxs === null && (
             <div className="flex animate-pulse space-x-4">
               <div className="flex-1 space-y-3 py-1">
                 <div className="h-2 rounded bg-slate-700"></div>
@@ -165,17 +159,13 @@ export default function Home() {
             </div>
           )}
           {recentTxs !== null && recentTxs.length === 0 && (
-            <span className="flex justify-center items-center h-full w-full">No recent transactions</span>
+            <span className="flex h-full w-full items-center justify-center">
+              No recent transactions
+            </span>
           )}
         </ul>
         <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-full bg-gradient-to-b from-transparent to-white dark:to-slate-900"></div>
       </div>
-      <footer
-        className={`fixed bottom-2 flex items-center justify-center text-xs text-gray-500`}
-      >
-        Made with ♡ by
-        <a className="ml-1 text-purple-600 dark:text-lime-400">Zayd</a>
-      </footer>
-    </main>
+    </>
   )
 }
