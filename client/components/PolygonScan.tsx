@@ -18,7 +18,7 @@ const PolygonScan = ({
     >
       {tx
         ? short
-          ? tx.substring(0, 20) + '...'
+          ? tx.substring(0, 15) + '...'
           : tx
         : short && address
         ? address.substring(0, 10) + '...'

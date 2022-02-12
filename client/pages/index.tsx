@@ -18,6 +18,7 @@ export default function Home() {
   const [faucetBalance, setFaucetBalance] = useState<string>(' ...')
   const [captcha, setCaptcha] = useState('')
   const [recentTxs, setRecentTxs] = useState<any[] | null>(null)
+  const [sending, setSending] = useState(false)
   const captchaRef = useRef<any>()
 
   const getFaucetInfo = async () => {
@@ -37,14 +38,17 @@ export default function Home() {
   const claim = async () => {
     if (!account) return toast.error('Please connect your wallet first')
     try {
+      setSending(true)
       const { data } = await claimFaucet(account, captcha)
       setRecentTxs([data, ...(recentTxs || [])])
       toast.success('Claimed successfully')
     } catch (err: any) {
       toast.error(err.response?.data.message || 'Something went wrong')
       console.log(err)
+    } finally {
+      setCaptcha('')
+      setSending(false)
     }
-    setCaptcha('')
   }
 
   useEffect(() => {
@@ -53,6 +57,7 @@ export default function Home() {
   }, [captcha])
 
   const connectWallet = () => {
+    if (sending) return
     if (account) {
       if (captchaRef?.current && !captcha) return captchaRef.current.execute()
     }
@@ -115,12 +120,18 @@ export default function Home() {
         <div className="flex justify-center py-4 pb-6">
           <div
             onClick={() => connectWallet()}
-            className="group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-violet-400 px-10 py-4 font-mono font-medium tracking-tighter text-gray-800 dark:bg-gray-800 dark:text-white"
+            className={`group relative inline-flex ${
+              sending ? 'cursor-not-allowed' : 'cursor-pointer'
+            } items-center justify-center overflow-hidden rounded-lg bg-violet-400 px-10 py-4 font-mono font-medium tracking-tighter text-gray-800 dark:bg-gray-800 dark:text-white`}
           >
             <span className="absolute h-0 w-0 rounded-full bg-[#7B3FE4] transition-all duration-500 ease-out group-hover:h-56 group-hover:w-56"></span>
             <span className="absolute inset-0 -mt-1 h-full w-full rounded-lg bg-gradient-to-b from-transparent via-transparent to-gray-700 opacity-30"></span>
             <span className="relative">
-              {account ? 'Get Some MATIC!' : 'Connect Wallet'}
+              {sending
+                ? 'Sending...'
+                : account
+                ? 'Get Some MATIC!'
+                : 'Connect Wallet'}
             </span>
           </div>
         </div>
