@@ -28,7 +28,7 @@ export default function Home() {
       setFaucetBalance(faucetBalance)
       setTimeout(async () => {
         setRecentTxs(latest10Transactions)
-      }, 3500)
+      }, 2000)
     } catch {
       toast.error("Couldn't fetch faucet info")
     }
