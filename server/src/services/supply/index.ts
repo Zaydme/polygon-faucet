@@ -24,7 +24,6 @@ export default async function(fastify, opts) {
     },
     async function(request, reply) {
       const { hCaptchaResponse } = request.body;
-      console.log(hCaptchaResponse, opts.config.hCaptchaSecret);
 
       const params = new URLSearchParams();
       params.append('secret', opts.config.hCaptchaSecret);
@@ -49,7 +48,6 @@ export default async function(fastify, opts) {
       if (!isAddress(fixedAddress))
         throw new Error(`Invalid wallet address: ${wallet}`);
 
-      // check in mongodb if wallet has already claimed in the last 12 hours
       const walletExists = await fastify.mongo.db
         .collection('wallets')
         .findOne({
