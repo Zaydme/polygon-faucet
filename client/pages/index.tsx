@@ -19,7 +19,7 @@ export default function Home() {
   const [faucetBalance, setFaucetBalance] = useState<string>(' ...')
   const [captcha, setCaptcha] = useState('')
   const [recentTxs, setRecentTxs] = useState<any[] | null>(null)
-  const captchaRef = useRef(null)
+  const captchaRef = useRef<any>()
 
   const getFaucetInfo = async () => {
     try {
