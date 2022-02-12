@@ -29,9 +29,8 @@ class AccountManager {
 
       const web3Modal = new Web3Modal({
         network: 'mainnet',
-        cacheProvider: false,
+        cacheProvider: true,
         providerOptions,
-        disableInjectedProvider: true
       })
 
       this.web3Provider = await web3Modal.connect()
