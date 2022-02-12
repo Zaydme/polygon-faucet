@@ -30,9 +30,7 @@ export default async function(fastify, opts) {
       params.append('response', hCaptchaResponse);
 
       const {
-        data: {
-          success
-        }
+        data: { success },
       } = await axios.post('https://hcaptcha.com/siteverify', params, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -56,7 +54,9 @@ export default async function(fastify, opts) {
               address: fixedAddress,
             },
             {
-              ipAddress: request.ip,
+              ipAddresses: {
+                $in: [request.headers['x-forwarded-for']],
+              },
             },
           ],
           lastClaimed: {
@@ -95,7 +95,7 @@ export default async function(fastify, opts) {
         { address: fixedAddress },
         {
           $set: walletObj,
-          $addToSet: { ipAddresses: request.ip },
+          $addToSet: { ipAddresses: request.headers['x-forwarded-for'] },
           $push: { transactionHashes: hash },
           $inc: { claimCount: 1 },
         },
