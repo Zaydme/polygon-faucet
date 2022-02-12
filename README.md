@@ -1,5 +1,5 @@
 # Polygon Matic Community Faucet
-![example branch parameter](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=master)
+![Vercel](https://vercelbadge.vercel.app/api/Zaydme/polygon-faucet)
 
 
 Website: [https://matic.btn.sh/](https://matic.btn.sh/)
