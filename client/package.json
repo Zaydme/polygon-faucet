@@ -9,10 +9,14 @@
   },
   "dependencies": {
     "@hcaptcha/react-hcaptcha": "^1.1.0",
+    "@walletconnect/web3-provider": "^1.7.1",
+    "moment": "^2.29.1",
     "next": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-toastify": "^8.1.1"
+    "react-toastify": "^8.1.1",
+    "web3": "^1.7.0",
+    "web3modal": "^1.9.5"
   },
   "devDependencies": {
     "@types/node": "17.0.4",
