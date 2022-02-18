@@ -24,12 +24,12 @@ export default function Home() {
   const getFaucetInfo = async () => {
     try {
       const {
-        data: { latest10Transactions, faucetBalance },
+        data: { latest20Transactions, faucetBalance },
       } = await axios.get(`${config.apiUrl}/info`)
       setFaucetBalance(faucetBalance)
       setTimeout(async () => {
-        setRecentTxs(latest10Transactions)
-      }, 2000)
+        setRecentTxs(latest20Transactions)
+      }, 1000)
     } catch {
       toast.error("Couldn't fetch faucet info")
     }

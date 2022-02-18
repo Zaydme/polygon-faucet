@@ -5,19 +5,19 @@ export default async function(fastify, opts) {
   });
   fastify.get('/info', async function(request, reply) {
     const faucetBalance = await fastify.getEthBalance();
-    const latest10Transactions = await fastify.mongo.db
+    const latest20Transactions = await fastify.mongo.db
       .collection('transactions')
       .find({})
       .sort({
         createdAt: -1,
       })
-      .limit(10)
+      .limit(20)
       .toArray();
 
     return {
       faucetBalance: fastify.web3.utils.fromWei(faucetBalance, 'ether'),
       claimTimeout: opts.config.timeouts.claimTimeout,
-      latest10Transactions,
+      latest20Transactions,
     };
   });
 }
