@@ -2,6 +2,7 @@ import axios from 'axios';
 import Web3 from 'web3';
 import { hCaptchaSecret } from '../../config';
 import { fixAddress, isAddress } from './_helpers';
+import moment from 'moment';
 
 export default async function(fastify, opts) {
   fastify.post(
@@ -66,7 +67,12 @@ export default async function(fastify, opts) {
 
       if (walletExists) {
         throw new Error(
-          'You have already claimed in the last 12 hours. Please try again later.',
+          `You have already claimed in the last 12 hours. Please try again ${moment(
+            moment(walletExists.lastClaimed).add(
+              opts.config.timeouts.claimTimeout,
+              'ms',
+            ),
+          ).fromNow()}.`,
         );
       }
 
