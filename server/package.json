@@ -21,6 +21,7 @@
     "fastify-rate-limit": "^5.7.0",
     "fastify-redis": "^4.3.3",
     "lodash": "^4.17.21",
+    "moment": "^2.29.1",
     "pg": "^7.12.1",
     "pino-pretty": "^7.3.0",
     "redis": "^4.0.1",
