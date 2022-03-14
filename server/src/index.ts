@@ -1,5 +1,6 @@
 import { validateEnvironment } from './validate-environment';
 import dotenv from 'dotenv';
+import { readFileSync } from 'fs';
 dotenv.config();
 validateEnvironment(process.env);
 import fastify from 'fastify';
@@ -8,6 +9,10 @@ import config from './config';
 
 const server = fastify({
   logger: true,
+  https: {
+    key: readFileSync(config.https.keyPath),
+    cert: readFileSync(config.https.certPath),
+  },
 });
 
 const start = async () => {

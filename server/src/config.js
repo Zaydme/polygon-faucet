@@ -2,6 +2,10 @@ module.exports = {
   mongo: {
     url: process.env.MONGO_URL,
   },
+  https: {
+    keyPath: process.env.SSL_KEY_PATH,
+    certPath: process.env.SSL_CERT_PATH,
+  },
   timeouts: {
     claimTimeout: 43200000,
   },

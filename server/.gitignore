@@ -63,3 +63,8 @@ src/test/types/index.js
 
 # enviroment variables
 .env
+
+# ssl keys
+*.pem
+*.crt
+*.key
